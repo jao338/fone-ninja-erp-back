@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('average_cost', 10, 2)->default(0);
             $table->decimal('sale_price', 10, 2);
-            $table->integer('stock')->default(0);
+            $table->integer('amount')->default(0);
             $table->timestamps();
         });
     }
