@@ -1,7 +1,7 @@
 <?php
 
 use Base\Models\Auth\AuthController;
-use Base\Models\Exemplo\ExemploController;
+use Base\Models\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -23,15 +23,9 @@ Route::group([
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
         Route::group([
-            'prefix' => 'exemplo',
+            'prefix' => 'products',
         ], function (): void {
-//            Route::apiResource('', ExemploController::class); // Substitui todos as rotas abaixo
-
-            Route::get('', [ExemploController::class, 'index'])->name('exemplo.index');
-            Route::get('{uuid}', [ExemploController::class, 'show'])->name('exemplo.show');
-            Route::post('', [ExemploController::class, 'store'])->name('exemplo.store');
-            Route::put('{uuid}', [ExemploController::class, 'update'])->name('exemplo.update');
-            Route::delete('{uuid}', [ExemploController::class, 'destroy'])->name('exemplo.destroy');
+            Route::apiResource('', ProductController::class);
         });
 
     });
