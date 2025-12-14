@@ -10,11 +10,12 @@ class User extends Authenticatable {
 
     use HasApiTokens;
 
-    protected $table      = 'users';
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
+    protected $table       = 'user';
+    protected $primaryKey  = 'id';
+    protected $keyType     = 'int';
 
     public $incrementing   = true;
+    public $timestamps     = true;
 
     protected $casts  = [];
 
