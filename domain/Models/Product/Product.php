@@ -2,7 +2,10 @@
 
 namespace Base\Models\Product;
 
+use Base\Models\SaleItem\SaleItem;
+use Base\Models\ShoppingItem\ShoppingItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Product extends Model {
@@ -26,6 +29,16 @@ class Product extends Model {
     public function getRouteKeyName(): string
     {
         return 'uuid';
+    }
+
+    public function shoppingItens(): HasMany
+    {
+        return $this->hasMany(ShoppingItem::class);
+    }
+
+    public function saleItens(): HasMany
+    {
+        return $this->hasMany(SaleItem::class);
     }
 
     protected static function booted(): void
