@@ -9,9 +9,8 @@ class LoginResource extends JsonResource {
     public function toArray($request): array
     {
         return [
-            'cad_e_mail'       => $this->cad_e_mail,
-            'cad_razao_social' => $this->cad_razao_social,
-            'cad_cnpj'         => $this->cad_cnpj,
+            'email'            => $this->email,
+            'nome'             => $this->name,
             'token'            => $this->getActiveToken(),
         ];
     }
