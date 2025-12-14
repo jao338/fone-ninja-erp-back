@@ -2,18 +2,18 @@
 
 namespace Base\Models\Supplier;
 
-use Base\Models\Sale\Sale;
+use Base\Models\Shopping\Shopping;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Supplier extends Model {
 
-    protected $table      = 'product';
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
-
-    public $incrementing   = true;
+    protected $table        = 'product';
+    protected $primaryKey   = 'id';
+    protected $keyType      = 'int';
+    public $incrementing    = true;
+    public $timestamps      = true;
 
     protected $casts  = [];
 
@@ -30,16 +30,16 @@ class Supplier extends Model {
         return 'uuid';
     }
 
-    public function sale(): HasMany
+    public function shopping(): HasMany
     {
-        return $this->hasMany(Sale::class);
+        return $this->hasMany(Shopping::class);
     }
 
     protected static function booted(): void
     {
-        static::creating(function (self $user) {
-            if (empty($user->uuid)) {
-                $user->uuid = (string) Str::uuid();
+        static::creating(function (self $supplier) {
+            if (empty($supplier->uuid)) {
+                $supplier->uuid = (string) Str::uuid();
             }
         });
     }

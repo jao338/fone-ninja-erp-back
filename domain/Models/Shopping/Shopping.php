@@ -11,11 +11,11 @@ use Illuminate\Support\Str;
 
 class Shopping extends Model {
 
-    protected $table      = 'shopping';
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
-
-    public $incrementing   = true;
+    protected $table        = 'shopping';
+    protected $primaryKey   = 'id';
+    protected $keyType      = 'int';
+    public $incrementing    = true;
+    public $timestamps      = true;
 
     protected $casts  = [];
 
@@ -23,8 +23,6 @@ class Shopping extends Model {
         'uuid',
         'supplier_id',
         'total',
-        'created_at',
-        'updated_at',
     ];
 
     public function getRouteKeyName(): string
@@ -37,16 +35,16 @@ class Shopping extends Model {
         return $this->belongsTo(Supplier::class);
     }
 
-    public function shoppingItens(): HasMany
+    public function shoppingItems(): HasMany
     {
         return $this->hasMany(SaleItem::class);
     }
 
     protected static function booted(): void
     {
-        static::creating(function (self $user) {
-            if (empty($user->uuid)) {
-                $user->uuid = (string) Str::uuid();
+        static::creating(function (self $shopping) {
+            if (empty($shopping->uuid)) {
+                $shopping->uuid = (string) Str::uuid();
             }
         });
     }

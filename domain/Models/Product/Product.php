@@ -10,11 +10,12 @@ use Illuminate\Support\Str;
 
 class Product extends Model {
 
-    protected $table      = 'product';
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
+    protected $table       = 'product';
+    protected $primaryKey  = 'id';
+    protected $keyType     = 'int';
 
     public $incrementing   = true;
+    public $timestamps     = true;
 
     protected $casts  = [];
 
@@ -31,21 +32,21 @@ class Product extends Model {
         return 'uuid';
     }
 
-    public function shoppingItens(): HasMany
+    public function shoppingItems(): HasMany
     {
         return $this->hasMany(ShoppingItem::class);
     }
 
-    public function saleItens(): HasMany
+    public function saleItems(): HasMany
     {
         return $this->hasMany(SaleItem::class);
     }
 
     protected static function booted(): void
     {
-        static::creating(function (self $user) {
-            if (empty($user->uuid)) {
-                $user->uuid = (string) Str::uuid();
+        static::creating(function (self $product) {
+            if (empty($product->uuid)) {
+                $product->uuid = (string) Str::uuid();
             }
         });
     }

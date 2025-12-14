@@ -10,11 +10,12 @@ use Illuminate\Support\Str;
 
 class ShoppingItem extends Model {
 
-    protected $table      = 'shopping_item';
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
+    protected $table        = 'shopping_item';
+    protected $primaryKey   = 'id';
+    protected $keyType      = 'int';
 
-    public $incrementing   = true;
+    public $incrementing    = true;
+    public $timestamps      = true;
 
     protected $casts  = [];
 
@@ -23,9 +24,7 @@ class ShoppingItem extends Model {
         'shopping_id',
         'product_id',
         'unit_price',
-        'subtotal',
-        'created_at',
-        'updated_at',
+        'subtotal'
     ];
 
     public function getRouteKeyName(): string
@@ -45,9 +44,9 @@ class ShoppingItem extends Model {
 
     protected static function booted(): void
     {
-        static::creating(function (self $user) {
-            if (empty($user->uuid)) {
-                $user->uuid = (string) Str::uuid();
+        static::creating(function (self $shoppingItem) {
+            if (empty($shoppingItem->uuid)) {
+                $shoppingItem->uuid = (string) Str::uuid();
             }
         });
     }

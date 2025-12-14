@@ -9,11 +9,11 @@ use Illuminate\Support\Str;
 
 class Client extends Model {
 
-    protected $table      = 'client';
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
-
-    public $incrementing   = true;
+    protected $table        = 'client';
+    protected $primaryKey   = 'id';
+    protected $keyType      = 'int';
+    public $incrementing    = true;
+    public $timestamps      = true;
 
     protected $casts  = [];
 
@@ -37,9 +37,9 @@ class Client extends Model {
 
     protected static function booted(): void
     {
-        static::creating(function (self $user) {
-            if (empty($user->uuid)) {
-                $user->uuid = (string) Str::uuid();
+        static::creating(function (self $client) {
+            if (empty($client->uuid)) {
+                $client->uuid = (string) Str::uuid();
             }
         });
     }
