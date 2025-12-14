@@ -1,0 +1,65 @@
+version: '3.8'
+
+networks:
+  docker_example:
+    external: true
+    name: docker_example
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: docker_example_nginx
+    hostname: docker_example_nginx
+    restart: unless-stopped
+    depends_on:
+      - php
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx/log:/var/log/nginx
+      - ./nginx/conf/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - docker_example
+
+  php:
+    image: php:8.3-fpm-alpine
+    container_name: docker_example_php
+    hostname: docker_example_php
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - docker_example
+    build:
+      context: .
+      dockerfile: Dockerfile
+  mysql:
+    image: mysql:8.0
+    container_name: docker_example_mysql
+    hostname: docker_example_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - docker_example
+
+  composer:
+    image: composer:2
+    container_name: docker_example_composer
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - docker_example
+    entrypoint: [ "composer" ]
+
+volumes:
+  mysql_data:
