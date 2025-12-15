@@ -1,18 +1,18 @@
 <?php
 
-namespace Base\Models\Supplier\Resources;
+namespace Base\Models\Client\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SupplierResource extends JsonResource {
+class ClientResource extends JsonResource {
 
     public function toArray($request): array
     {
         return [
             'nome'              => $this->name,
-            'cnpj'              => $this->cnpj,
+            'documento'         => $this->cpf,
             'email'             => $this->email,
-            'telephone'         => $this->telephone,
+            'telefone'          => $this->telephone,
             'criado_em'         => $this->created_at,
             'atualizado_em'     => $this->updated_at,
             'uuid'              => $this->uuid,
