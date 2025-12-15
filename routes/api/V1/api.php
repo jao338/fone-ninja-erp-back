@@ -1,6 +1,7 @@
 <?php
 
 use Base\Models\Auth\AuthController;
+use Base\Models\Client\ClientController;
 use Base\Models\Product\ProductController;
 use Base\Models\Supplier\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -23,8 +24,9 @@ Route::group([
         Route::get('me', [AuthController::class, 'me'])->name('me');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-        Route::apiResource('products', ProductController::class);
-        Route::apiResource('supplier', SupplierController::class);
+        Route::apiResource('products', ProductController::class)->name('products');
+        Route::apiResource('suppliers', SupplierController::class)->name('suppliers');
+        Route::apiResource('clients', ClientController::class)->name('clients');
 
     });
 });
