@@ -15,6 +15,7 @@ class ProductResource extends JsonResource {
             'quantidade'       => $this->amount,
             'criado_em'        => $this->created_at,
             'atualizado_em'    => $this->updated_at,
+            'uuid'             => $this->uuid,
         ];
     }
 }

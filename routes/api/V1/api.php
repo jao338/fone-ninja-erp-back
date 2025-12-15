@@ -22,11 +22,7 @@ Route::group([
         Route::get('me', [AuthController::class, 'me'])->name('me');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-        Route::group([
-            'prefix' => 'products',
-        ], function (): void {
-            Route::apiResource('', ProductController::class);
-        });
+        Route::apiResource('products', ProductController::class);
 
     });
 });

@@ -28,9 +28,11 @@ class ProductController extends Controller {
     {
         return new ProductResource($action->handle($request->validated()));
     }
-    public function update(string $uuid, ProductRequest $request, UpdateAction $action): JsonResource
+    public function update(string $uuid, ProductRequest $request, UpdateAction $action): Response
     {
-        return new ProductResource($action->handle($uuid, $request->validated()));
+        $action->handle($uuid, $request->validated());
+
+        return response()->noContent();
     }
 
     public function destroy(string $uuid, DestroyAction $action): Response
