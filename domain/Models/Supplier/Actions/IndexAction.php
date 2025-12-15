@@ -1,13 +1,13 @@
 <?php
 
-namespace Base\Models\Product\Actions;
+namespace Base\Models\Supplier\Actions;
 
-use Base\Models\Product\Product;
+use Base\Models\Supplier\Supplier;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 final readonly class IndexAction {
 
-    public function __construct(protected Product $model) {}
+    public function __construct(protected Supplier $model) {}
 
     public function handle(array $data): LengthAwarePaginator
     {
