@@ -23,6 +23,7 @@ Route::group([
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
         Route::apiResource('products', ProductController::class);
+        Route::apiResource('supplier', SupplierController::class);
 
     });
 });
