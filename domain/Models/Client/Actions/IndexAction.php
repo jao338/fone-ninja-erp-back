@@ -14,7 +14,7 @@ final readonly class IndexAction {
         $name               = $data['nome'] ?? null;
         $cpf                = $data['cpf'] ?? null;
         $email              = $data['email'] ?? null;
-        $telephone          = $data['telephone'] ?? null;
+        $telephone          = $data['telefone'] ?? null;
 
         $tipo_ordenacao     = $data['tipo_ordenacao'] ?? null;
         $campo_ordenacao    = $data['campo_ordenacao'] ?? null;
