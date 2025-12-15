@@ -15,10 +15,10 @@ class ProductFilterRequest extends FormRequest
                 'max:255',
             ],
             'custo_medio' => [
-                'integer',
+                'numeric',
             ],
             'preco_venda' => [
-                'integer',
+                'numeric',
             ],
             'quantidade' => [
                 'integer',
