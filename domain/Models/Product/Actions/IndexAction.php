@@ -32,7 +32,7 @@ final readonly class IndexAction {
             ->when(isset($updated_at), fn($query)   => $query->where('updated_at', $updated_at))
             ->when(
                 !isset($campo_ordenacao) && !isset($tipo_ordenacao),
-                fn($query) => $query->orderBy('criado_em', 'DESC'),
+                fn($query) => $query->orderBy('created_at', 'DESC'),
                 fn($query) => $query->orderBy($campo_ordenacao, $tipo_ordenacao)
             )
             ->paginate($por_pagina);

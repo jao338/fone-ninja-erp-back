@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('client', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique();
             $table->string('name');
             $table->string('cpf');
             $table->string('email')->nullable();
