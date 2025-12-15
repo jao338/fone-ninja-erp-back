@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class Supplier extends Model {
 
-    protected $table        = 'product';
+    protected $table        = 'supplier';
     protected $primaryKey   = 'id';
     protected $keyType      = 'int';
     public $incrementing    = true;

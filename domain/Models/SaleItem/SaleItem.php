@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class SaleItem extends Model {
 
-    protected $table        = 'sale';
+    protected $table        = 'sale_item';
     protected $primaryKey   = 'id';
     protected $keyType      = 'int';
     public $incrementing    = true;
