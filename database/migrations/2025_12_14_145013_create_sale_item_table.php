@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sale_item', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique();
             $table->foreignId('sale_id')
                 ->constrained('sale')
                 ->cascadeOnDelete();
