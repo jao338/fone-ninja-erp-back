@@ -19,7 +19,7 @@ final readonly class CreateAction
 
             //  Primeiro cria a compra
             $shopping = Shopping::create([
-                'supplier_id' => Supplier::where('uuid', $data['fornecedor_uuid'])->id,
+                'supplier_id' => Supplier::where('uuid', $data['fornecedor_uuid'])->first()->id,
                 'total'       => 0,
             ]);
 
@@ -27,7 +27,7 @@ final readonly class CreateAction
             foreach ($data['itens'] as $item) {
 
                 //  Busca e trava para atualizações no mesmo produto
-                $product = Product::lockForUpdate()->where('uuid', $item['produto_uuid']);
+                $product = Product::lockForUpdate()->where('uuid', $item['produto_uuid'])->first();
                 //  Calcula o subtotal, multiplicando a quantidade pelo preço unitário
                 $subtotal = $item['quantidade'] * $item['preco_unitario'];
 
@@ -36,17 +36,18 @@ final readonly class CreateAction
                     'shopping_id' => $shopping->id,
                     'product_id'  => $product->id,
                     'unit_price'  => $item['preco_unitario'],
+                    'amount'      => $item['quantidade'],
                     'subtotal'    => $subtotal,
                 ]);
 
                 //  Calcula a nova quantidade do produto recém-comprado
-                $new_amount = $product->amount + $item['amount'];
+                $new_amount = $product->amount + $item['quantidade'];
 
                 //  Média ponderada
                 // ((valor antigo + valor novo) / quantidade total)
                 $new_average_cost = (
                         ($product->average_cost * $product->amount) +
-                        ($item['unit_price'] * $item['amount'])
+                        ($item['preco_unitario'] * $item['quantidade'])
                     ) / $new_amount;
 
                 //  Atualiza a quantidade e o custo médio
