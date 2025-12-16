@@ -26,8 +26,17 @@ Route::group([
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
         Route::apiResource('products', ProductController::class)->names('products');
-        Route::apiResource('suppliers', SupplierController::class)->names('suppliers');
-        Route::apiResource('clients', ClientController::class)->names('clients');
-        Route::apiResource('shopping', ShoppingController::class)->names('shopping');
+
+        Route::apiResource('suppliers', SupplierController::class)
+            ->only(['index', 'show'])
+            ->names('suppliers');
+        Route::apiResource('clients', ClientController::class)
+            ->only(['index', 'show'])
+            ->names('clients');
+
+        Route::get('shopping', [ShoppingController::class, 'index'])->name('shopping.index');
+        Route::get('shopping/{uuid}', [ShoppingController::class, 'show'])->name('shopping.show');
+        Route::post('shopping', [ShoppingController::class, 'store'])->name('shopping.store');
+        Route::delete('shopping/{uuid}', [ShoppingController::class, 'destroy'])->name('shopping.destroy');
     });
 });
