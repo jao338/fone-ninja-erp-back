@@ -8,7 +8,6 @@ use Base\Models\Supplier\Actions\ShowAction;
 use Base\Models\Supplier\Requests\SupplierFilterRequest;
 use Base\Models\Supplier\Resources\SupplierResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Response;
 
 class SupplierController extends Controller {
 

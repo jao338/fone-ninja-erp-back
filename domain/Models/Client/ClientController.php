@@ -8,7 +8,6 @@ use Base\Models\Client\Actions\ShowAction;
 use Base\Models\Client\Requests\ClientFilterRequest;
 use Base\Models\Client\Resources\ClientResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Response;
 
 class ClientController extends Controller {
 

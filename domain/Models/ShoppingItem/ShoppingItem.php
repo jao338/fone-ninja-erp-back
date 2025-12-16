@@ -24,6 +24,7 @@ class ShoppingItem extends Model {
         'shopping_id',
         'product_id',
         'unit_price',
+        'amount',
         'subtotal'
     ];
 

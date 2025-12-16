@@ -3,6 +3,7 @@
 namespace Base\Models\Shopping;
 
 use Base\Models\SaleItem\SaleItem;
+use Base\Models\ShoppingItem\ShoppingItem;
 use Base\Models\Supplier\Supplier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,7 +38,7 @@ class Shopping extends Model {
 
     public function shoppingItems(): HasMany
     {
-        return $this->hasMany(SaleItem::class);
+        return $this->hasMany(ShoppingItem::class);
     }
 
     protected static function booted(): void

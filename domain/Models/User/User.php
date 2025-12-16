@@ -2,13 +2,14 @@
 
 namespace Base\Models\User;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable {
 
-    use HasApiTokens;
+    use HasApiTokens, HasFactory;
 
     protected $table       = 'user';
     protected $primaryKey  = 'id';
@@ -44,6 +45,11 @@ class User extends Authenticatable {
     public function getRouteKeyName(): string
     {
         return 'uuid';
+    }
+
+    protected static function newFactory()
+    {
+        return UserFactory::new();
     }
 
     protected static function booted(): void
