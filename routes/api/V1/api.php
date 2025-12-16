@@ -5,6 +5,7 @@ use Base\Models\Product\ProductController;
 use Base\Models\Supplier\SupplierController;
 use Base\Models\Shopping\ShoppingController;
 use Base\Models\Client\ClientController;
+use Base\Models\Sale\SaleController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -34,9 +35,12 @@ Route::group([
             ->only(['index', 'show'])
             ->names('clients');
 
-        Route::get('shopping', [ShoppingController::class, 'index'])->name('shopping.index');
-        Route::get('shopping/{uuid}', [ShoppingController::class, 'show'])->name('shopping.show');
-        Route::post('shopping', [ShoppingController::class, 'store'])->name('shopping.store');
-        Route::delete('shopping/{uuid}', [ShoppingController::class, 'destroy'])->name('shopping.destroy');
+        Route::apiResource('shopping', ShoppingController::class)
+            ->only(['index', 'show', 'store', 'destroy'])
+            ->names('shopping');
+
+        Route::apiResource('sale', SaleController::class)
+            ->only(['index', 'show'])
+            ->names('sale');
     });
 });
