@@ -4,11 +4,14 @@ namespace Base\Models\Product;
 
 use Base\Models\SaleItem\SaleItem;
 use Base\Models\ShoppingItem\ShoppingItem;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Product extends Model {
+
+    use HasFactory;
 
     protected $table       = 'product';
     protected $primaryKey  = 'id';
@@ -40,6 +43,11 @@ class Product extends Model {
     public function saleItems(): HasMany
     {
         return $this->hasMany(SaleItem::class);
+    }
+
+    protected static function newFactory()
+    {
+        return ProductFactory::new();
     }
 
     protected static function booted(): void
