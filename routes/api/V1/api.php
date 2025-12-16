@@ -25,10 +25,9 @@ Route::group([
         Route::get('me', [AuthController::class, 'me'])->name('me');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-        Route::apiResource('products', ProductController::class)->name('products');
-        Route::apiResource('suppliers', SupplierController::class)->name('suppliers');
-        Route::apiResource('clients', ClientController::class)->name('clients');
-        Route::apiResource('shopping', ShoppingController::class)->name('shopping');
-
+        Route::apiResource('products', ProductController::class)->names('products');
+        Route::apiResource('suppliers', SupplierController::class)->names('suppliers');
+        Route::apiResource('clients', ClientController::class)->names('clients');
+        Route::apiResource('shopping', ShoppingController::class)->names('shopping');
     });
 });
