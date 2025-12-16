@@ -23,7 +23,6 @@ class Sale extends Model {
         'uuid',
         'client_id',
         'total',
-        'total',
         'profit',
         'active',
     ];
@@ -38,7 +37,7 @@ class Sale extends Model {
         return $this->belongsTo(Client::class);
     }
 
-    public function saleItens(): HasMany
+    public function saleItems(): HasMany
     {
         return $this->hasMany(SaleItem::class);
     }

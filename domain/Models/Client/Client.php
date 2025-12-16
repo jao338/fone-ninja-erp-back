@@ -3,11 +3,14 @@
 namespace Base\Models\Client;
 
 use Base\Models\Sale\Sale;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Client extends Model {
+
+    use HasFactory;
 
     protected $table        = 'client';
     protected $primaryKey   = 'id';
@@ -33,6 +36,11 @@ class Client extends Model {
     public function sale(): HasMany
     {
         return $this->hasMany(Sale::class);
+    }
+
+    protected static function newFactory()
+    {
+        return ClientFactory::new();
     }
 
     protected static function booted(): void
