@@ -40,7 +40,7 @@ Route::group([
             ->names('shopping');
 
         Route::apiResource('sale', SaleController::class)
-            ->only(['index', 'show'])
+            ->only(['index', 'show', 'store'])
             ->names('sale');
     });
 });
