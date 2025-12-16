@@ -1,9 +1,10 @@
 <?php
 
 use Base\Models\Auth\AuthController;
-use Base\Models\Client\ClientController;
 use Base\Models\Product\ProductController;
 use Base\Models\Supplier\SupplierController;
+use Base\Models\Shopping\ShoppingController;
+use Base\Models\Client\ClientController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -27,6 +28,7 @@ Route::group([
         Route::apiResource('products', ProductController::class)->name('products');
         Route::apiResource('suppliers', SupplierController::class)->name('suppliers');
         Route::apiResource('clients', ClientController::class)->name('clients');
+        Route::apiResource('shopping', ShoppingController::class)->name('shopping');
 
     });
 });
