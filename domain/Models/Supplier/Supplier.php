@@ -3,11 +3,14 @@
 namespace Base\Models\Supplier;
 
 use Base\Models\Shopping\Shopping;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Supplier extends Model {
+
+    use HasFactory;
 
     protected $table        = 'supplier';
     protected $primaryKey   = 'id';
@@ -33,6 +36,11 @@ class Supplier extends Model {
     public function shopping(): HasMany
     {
         return $this->hasMany(Shopping::class);
+    }
+
+    protected static function newFactory()
+    {
+        return SupplierFactory::new();
     }
 
     protected static function booted(): void

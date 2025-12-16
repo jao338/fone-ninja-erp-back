@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use Base\Models\User\User;
+use Base\Models\Supplier\Supplier;
 use Illuminate\Database\Seeder;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class UserSeeder extends Seeder
+class SupplierSeeder extends Seeder
 {
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        User::factory()->count(3)->create();
+        Supplier::factory()->count(10)->create();
     }
 }
