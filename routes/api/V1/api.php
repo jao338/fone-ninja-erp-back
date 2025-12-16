@@ -19,6 +19,11 @@ Route::group([
         Route::post('register', [AuthController::class, 'register'])->name('register');
     });
 
+
+    // Route::get('/sanctum/csrf-cookie', function (\Illuminate\Http\Request $request) {
+    //     return response()->noContent();
+    // });
+
     Route::group([
         'middleware' => ['auth:sanctum'],
     ], function (): void {
