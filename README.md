@@ -3,9 +3,36 @@
 Este projeto utiliza **Laravel + Nginx + PHP-FPM + MySQL** rodando em containers Docker.
 Os arquivos sensíveis ou específicos de ambiente **não são versionados**; para isso, são fornecidos arquivos `.example` e `-dev` que devem ser copiados e configurados localmente.
 
+## 🔐 Autenticação
+
+A API utiliza autenticação via **Laravel Sanctum**.
+
+Fluxo:
+1. POST `/api/login`
+2. Recebe token
+3. Enviar token via header:
+
+## 🔗 Principais endpoints
+
+### Login
+POST `/api/login`
+
+### Produtos
+GET `/api/products`
+POST `/api/products`
+
+### Compras
+POST `/api/shopping`
+DELETE `/api/shopping/{uuid}`
+
+### Vendas
+POST `/api/sale`
+DELETE `/api/sales/{uuid}`
+
+
 ---
 
-## 📁 Estrutura de arquivos relevantes
+## 📁 Estrutura de arquivos
 
 Os seguintes arquivos **não são versionados** e devem ser criados a partir dos exemplos:
 
@@ -52,6 +79,8 @@ DB_DATABASE=nome_do_banco
 DB_USERNAME=usuario
 DB_PASSWORD=senha
 DB_ROOT_PASSWORD=senha_root
+
+SESSION_DRIVER=file
 ```
 
 > ⚠️ O valor de `DB_HOST` **deve ser exatamente o nome do serviço MySQL** definido no `docker-compose.yml`.
@@ -132,9 +161,38 @@ Failed to open stream: Permission denied
 
 ---
 
+## 🌐 Criar base de dados e popular base de dados
+
+Depois de ter configurado sua variável de ambiente, instalado todas as dependências e subido os serviços, faça:
+Com alguma ferramenta como o MySql Workbench, crie a sua base de dados:
+
+```
+CREATE DATABASE nome_do_banco;
+```
+
+Agora que a base de dados foi criada, rode o seguinte comando na raiz do projeto: 
+
+```
+docker-compose run --rm php php artisan migrate:fresh --seed
+```
+
+Depois de rodar esses comandos, as tabelas foram populadas com dados fictícios.
+O seeder vai criar um usuário padrão do sistema. Esse usuário recém criado é assim:
+
+```
+{
+    "nome": "admin",
+    "email": "admin@teste.com",
+}
+```
+A senha é a mesma definida na chave "DEFAULT_PASSWORD" na variável de ambiente
+Para testar a aplicação, use esse usuário ou crie outro.
+
+---
+
 ## 🌐 Acesso à aplicação
 
-Após a configuração completa, acesse:
+Após todos esses passos, acesse:
 
 ```
 http://localhost
