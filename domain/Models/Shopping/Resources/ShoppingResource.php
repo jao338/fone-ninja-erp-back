@@ -10,10 +10,12 @@ class ShoppingResource extends JsonResource {
     public function toArray($request): array
     {
         return [
-            'uuid'         => $this->uuid,
-            'total'        => $this->total,
-            'fornecedor'   => $this->supplier?->name,
-            'items'        => ShoppingItemResource::collection($this->shoppingItems),
+            'uuid'             => $this->uuid,
+            'total'            => $this->total,
+            'fornecedor'       => $this->supplier?->name,
+            'items'            => ShoppingItemResource::collection($this->shoppingItems),
+            'criado_em'        => $this->created_at,
+            'atualizado_em'    => $this->updated_at,
         ];
     }
 }

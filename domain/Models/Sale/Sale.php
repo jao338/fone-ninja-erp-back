@@ -17,7 +17,9 @@ class Sale extends Model {
     public $incrementing    = true;
     public $timestamps      = true;
 
-    protected $casts  = [];
+    protected $casts  = [
+        'ativo' => 'boolean',
+    ];
 
     protected $fillable = [
         'uuid',

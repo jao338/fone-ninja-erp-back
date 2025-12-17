@@ -19,9 +19,22 @@ Route::group([
         Route::post('register', [AuthController::class, 'register'])->name('register');
     });
 
+
+    Route::get('/sanctum/csrf-cookie', function (\Illuminate\Http\Request $request) {
+        return response()->noContent();
+    });
+
+
     Route::group([
         'middleware' => ['auth:sanctum'],
     ], function (): void {
+
+         Route::group([
+            'prefix' => 'lookups'
+        ], function (): void {
+            Route::get('suppliers', [SupplierController::class, 'lookup'])->name('lookups.suppliers');
+            Route::get('clients', [ClientController::class, 'lookup'])->name('lookups.clients');
+        });
 
         Route::get('me', [AuthController::class, 'me'])->name('me');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');

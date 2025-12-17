@@ -14,10 +14,10 @@ class SaleFilterRequest extends FormRequest
               'numeric'
             ],
             'criado_em' => [
-                'datetime',
+                'date',
             ],
             'atualizado_em' => [
-                'datetime',
+                'date',
             ],
             'ativo' => [
                 'boolean',

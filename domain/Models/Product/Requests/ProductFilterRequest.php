@@ -24,10 +24,10 @@ class ProductFilterRequest extends FormRequest
                 'integer',
             ],
             'criado_em' => [
-                'datetime',
+                'date',
             ],
             'atualizado_em' => [
-                'datetime',
+                'date',
             ],
         ];
     }
