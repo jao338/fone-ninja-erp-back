@@ -28,8 +28,8 @@ final readonly class IndexAction {
             ->when(isset($average_cost), fn($query) => $query->where('average_cost', $average_cost))
             ->when(isset($sale_price), fn($query)   => $query->where('sale_price', $sale_price))
             ->when(isset($amount), fn($query)       => $query->where('amount', $amount))
-            ->when(isset($created_at), fn($query)   => $query->where('created_at', $created_at))
-            ->when(isset($updated_at), fn($query)   => $query->where('updated_at', $updated_at))
+            ->when(isset($created_at), fn($query)   => $query->where('created_at', 'LIKE', "%$created_at%"))
+            ->when(isset($updated_at), fn($query)   => $query->where('updated_at', 'LIKE', "%$updated_at%"))
             ->when(
                 !isset($campo_ordenacao) && !isset($tipo_ordenacao),
                 fn($query) => $query->orderBy('created_at', 'DESC'),
