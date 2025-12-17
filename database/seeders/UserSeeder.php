@@ -14,6 +14,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->count(3)->create();
+        User::updateOrCreate(
+            ['email'             => 'admin@teste.com'],
+            [
+                'name'           => 'admin',
+                'password'       => env('DEFAULT_PASSWORD'),
+                'remember_token' => null,
+            ]
+        );
     }
 }
