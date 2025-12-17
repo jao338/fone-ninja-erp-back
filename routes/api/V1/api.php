@@ -33,6 +33,7 @@ Route::group([
             'prefix' => 'lookups'
         ], function (): void {
             Route::get('suppliers', [SupplierController::class, 'lookup'])->name('lookups.suppliers');
+            Route::get('clients', [ClientController::class, 'lookup'])->name('lookups.clients');
         });
 
         Route::get('me', [AuthController::class, 'me'])->name('me');
